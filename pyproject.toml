@@ -11,6 +11,8 @@ llama-index = "^0.11.19"
 flask = "^3.0.3"
 markupsafe = "^3.0.2"
 python-dotenv = "^1.0.1"
+transformers = "^4.46.0"
+torch = "^2.5.0"
 
 
 [build-system]

@@ -1,11 +1,8 @@
-import openai
+from transformers import pipeline
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
+generator = pipeline('text-generation', model='gpt2')
 
 
 def get_response(question):
@@ -14,5 +11,12 @@ def get_response(question):
     query_engine = index.as_query_engine()
 
     response = query_engine.query(question)
-    #print(response)
-    return response
+    response_text = str(response)
+    extended_response = generator(response_text, max_length=10000, num_return_sequences=1, truncation=True)[0]["generated_text"]
+    return extended_response
+
+
+# Test it
+if __name__ == "__main__":
+    question = "What is the main idea of the book Good Omens?"
+    print(get_response(question))

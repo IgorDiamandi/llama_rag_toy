@@ -5,11 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Interface</title>
+
+    <!-- Load jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Load jQuery UI second -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <!-- Load HTMX -->
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+
+    <!-- Load your styles -->
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+
+    <!-- Load your custom JavaScript -->
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
 </head>
 <body>
-    <div id="chat-container">
+    <div id="chat-container" class="resizable draggable">
+        <div id="chat-header">
+            <span>Chat Interface</span>
+        </div>
         <div id="chat-box">
             <div id="messages"></div>
             <!-- Typing indicator -->
@@ -26,5 +43,7 @@
     </div>
 
     <script src="{{ url_for('static', filename='chat.js') }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 </body>
 </html>
