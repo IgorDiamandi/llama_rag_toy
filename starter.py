@@ -1,7 +1,11 @@
 import openai
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+import os
+from dotenv import load_dotenv
 
-openai.api_key = "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"
+load_dotenv()
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def get_response(question):
