@@ -1,0 +1,30 @@
+<!-- templates/chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-box">
+            <div id="messages"></div>
+            <!-- Typing indicator -->
+            <div id="typing-indicator" class="message bot-message typing-indicator" style="display: none;">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        <form id="chat-form" action="/ask" hx-post="/ask" hx-target="#messages" hx-swap="beforeend" onsubmit="addUserMessage(event)">
+            <input type="text" id="user-input" name="question" placeholder="Ask your question..." required autocomplete="off">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>
